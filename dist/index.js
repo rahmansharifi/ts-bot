@@ -36,13 +36,11 @@ app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             chat_id: message.chat.id,
             text: `🔥 Welcome [${message.from.first_name} ${message.from.last_name}](${message.from.username ? `https://t.me/${message.from.username}` : ""})`,
             parse_mode: "markdown",
+            link_preview_options: {
+                is_disabled: true,
+            },
         };
         yield xhr.post("/sendMessage", outgoingMessage);
-        const logMessage = {
-            chat_id: message.chat.id,
-            text: JSON.stringify(outgoingMessage, null, 2),
-        };
-        yield xhr.post("/sendMessage", logMessage);
     }
     res.end();
     return;

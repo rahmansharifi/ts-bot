@@ -35,13 +35,11 @@ app.post("/", async (req: Request, res: Response) => {
         message.from.username ? `https://t.me/${message.from.username}` : ""
       })`,
       parse_mode: "markdown",
+      link_preview_options: {
+        is_disabled: true,
+      },
     };
     await xhr.post("/sendMessage", outgoingMessage);
-    const logMessage: OutgoingMessage = {
-      chat_id: message.chat.id,
-      text: JSON.stringify(outgoingMessage, null, 2),
-    };
-    await xhr.post("/sendMessage", logMessage);
   }
   res.end();
   return;
