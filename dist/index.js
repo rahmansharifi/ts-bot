@@ -33,11 +33,17 @@ app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const update = req.body;
     const { message } = update;
     if (message) {
-        yield xhr.post("/sendMessage", {
+        const outgoingMessage = {
             chat_id: message.chat.id,
             text: `🔥 Welcome [${message.from.first_name} ${message.from.last_name}](${(_a = message.from.username) !== null && _a !== void 0 ? _a : `https://t.me/${message.from.username}`})`,
             parse_mode: "markdown",
-        });
+        };
+        yield xhr.post("/sendMessage", outgoingMessage);
+        const log = {
+            chat_id: message.chat.id,
+            text: JSON.stringify(outgoingMessage, null, 2),
+        };
+        yield xhr.post("/sendMessage", log);
     }
     res.end();
     return;

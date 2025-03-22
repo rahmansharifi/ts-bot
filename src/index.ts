@@ -1,4 +1,5 @@
 import { Update } from "grammy/types";
+import { OutgoingMessage } from "./types";
 
 import express, { Request, Response } from "express";
 import axios, { AxiosInstance } from "axios";
@@ -26,13 +27,19 @@ app.post("/", async (req: Request, res: Response) => {
   const update: Update = req.body;
   const { message } = update;
   if (message) {
-    await xhr.post("/sendMessage", {
+    const outgoingMessage: OutgoingMessage = {
       chat_id: message.chat.id,
       text: `🔥 Welcome [${message.from.first_name} ${
         message.from.last_name
       }](${message.from.username ?? `https://t.me/${message.from.username}`})`,
       parse_mode: "markdown",
-    });
+    };
+    await xhr.post("/sendMessage", outgoingMessage);
+    const log: OutgoingMessage = {
+      chat_id: message.chat.id,
+      text: JSON.stringify(outgoingMessage, null, 2),
+    };
+    await xhr.post("/sendMessage", log);
   }
   res.end();
   return;
