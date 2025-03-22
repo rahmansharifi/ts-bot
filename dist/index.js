@@ -34,7 +34,7 @@ app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (message) {
         yield xhr.post("/sendMessage", {
             chat_id: message.chat.id,
-            text: "Hello!",
+            text: message.from.first_name,
         });
     }
     res.end();
