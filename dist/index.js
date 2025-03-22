@@ -14,15 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const axios_1 = __importDefault(require("axios"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080;
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+const xhr = axios_1.default.create({
+    baseURL: `https://api.telegram.org/bot${process.env.BOT_TOKEN}/`,
+});
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("Express Typescript on Vercel");
-    return; // Returns void
+    res.status(200).send({ status: 200 });
+    return;
 }));
-app.get("/ping", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("pong 🏓");
+app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const update = req.body;
+    const { message } = update;
+    if (message) {
+        yield xhr.post("/sendMessage", {
+            chat_id: message.chat.id,
+            text: "Hello!",
+        });
+    }
+    res.end();
     return;
 }));
 app.listen(port, () => {
