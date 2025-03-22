@@ -36,6 +36,7 @@ app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         yield xhr.post("/sendMessage", {
             chat_id: message.chat.id,
             text: `🔥 Welcome [${message.from.first_name} ${message.from.last_name}](${(_a = message.from.username) !== null && _a !== void 0 ? _a : `https://t.me/${message.from.username}`})`,
+            parse_mode: "markdown",
         });
     }
     res.end();

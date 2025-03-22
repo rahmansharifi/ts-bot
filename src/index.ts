@@ -31,6 +31,7 @@ app.post("/", async (req: Request, res: Response) => {
       text: `🔥 Welcome [${message.from.first_name} ${
         message.from.last_name
       }](${message.from.username ?? `https://t.me/${message.from.username}`})`,
+      parse_mode: "markdown",
     });
   }
   res.end();
