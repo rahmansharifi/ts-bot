@@ -1,8 +1,8 @@
 import { Update } from "grammy/types";
 
 import express, { Request, Response } from "express";
-import dotenv from "dotenv";
 import axios, { AxiosInstance } from "axios";
+import dotenv from "dotenv";
 import cors from "cors";
 
 dotenv.config();
