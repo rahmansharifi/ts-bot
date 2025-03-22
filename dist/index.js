@@ -39,11 +39,11 @@ app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             parse_mode: "markdown",
         };
         yield xhr.post("/sendMessage", outgoingMessage);
-        const log = {
+        const logMessage = {
             chat_id: message.chat.id,
             text: JSON.stringify(outgoingMessage, null, 2),
         };
-        yield xhr.post("/sendMessage", log);
+        yield xhr.post("/sendMessage", logMessage);
     }
     res.end();
     return;

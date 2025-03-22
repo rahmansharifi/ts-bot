@@ -35,11 +35,11 @@ app.post("/", async (req: Request, res: Response) => {
       parse_mode: "markdown",
     };
     await xhr.post("/sendMessage", outgoingMessage);
-    const log: OutgoingMessage = {
+    const logMessage: OutgoingMessage = {
       chat_id: message.chat.id,
       text: JSON.stringify(outgoingMessage, null, 2),
     };
-    await xhr.post("/sendMessage", log);
+    await xhr.post("/sendMessage", logMessage);
   }
   res.end();
   return;
