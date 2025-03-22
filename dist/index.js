@@ -29,12 +29,13 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return;
 }));
 app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const update = req.body;
     const { message } = update;
     if (message) {
         yield xhr.post("/sendMessage", {
             chat_id: message.chat.id,
-            text: message.from.first_name,
+            text: `🔥 Welcome [${message.from.first_name} ${message.from.last_name}](${(_a = message.from.username) !== null && _a !== void 0 ? _a : `https://t.me/${message.from.username}`})`,
         });
     }
     res.end();

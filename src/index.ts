@@ -28,7 +28,9 @@ app.post("/", async (req: Request, res: Response) => {
   if (message) {
     await xhr.post("/sendMessage", {
       chat_id: message.chat.id,
-      text: message.from.first_name,
+      text: `🔥 Welcome [${message.from.first_name} ${
+        message.from.last_name
+      }](${message.from.username ?? `https://t.me/${message.from.username}`})`,
     });
   }
   res.end();
