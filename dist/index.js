@@ -29,12 +29,13 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return;
 }));
 app.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const update = req.body;
     const { message } = update;
     if (message) {
         const outgoingMessage = {
             chat_id: message.chat.id,
-            text: `🔥 Welcome [${message.from.first_name} ${message.from.last_name}](${message.from.username ? `https://t.me/${message.from.username}` : ""})`,
+            text: `🔥 Welcome [${message.from.first_name} ${(_a = message.from.last_name) !== null && _a !== void 0 ? _a : ''}](${message.from.username ? `https://t.me/${message.from.username}` : ""})`,
             parse_mode: "markdown",
             link_preview_options: {
                 is_disabled: true,
