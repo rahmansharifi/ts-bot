@@ -11,8 +11,9 @@ app.get("/", async (req: Request, res: Response) => {
   return; // Returns void
 });
 
-app.get("/ping", (req: Request, res: Response) => {
+app.get("/ping", async (req: Request, res: Response) => {
   res.send("pong 🏓");
+  return;
 });
 
 app.listen(port, (): void => {

@@ -21,9 +21,10 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("Express Typescript on Vercel");
     return; // Returns void
 }));
-app.get("/ping", (req, res) => {
+app.get("/ping", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("pong 🏓");
-});
+    return;
+}));
 app.listen(port, () => {
     return console.log(`Server is listening on ${port}`);
 });
