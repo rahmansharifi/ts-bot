@@ -1,4 +1,4 @@
-import { type Update } from "grammy/types";
+import { Update } from "grammy/types";
 
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
